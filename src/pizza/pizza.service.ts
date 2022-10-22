@@ -1,3 +1,4 @@
+import { FileService, FileType } from './../file/file.service';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
@@ -8,10 +9,13 @@ import { CreatePizzaDto } from './dto/create-pizza.dto';
 export class PizzaService {
   constructor(
     @InjectModel(Pizza.name) private PizzaModel: Model<PizzaDocument>,
+    private fileService: FileService,
   ) {}
 
-  async create(dto: CreatePizzaDto): Promise<Pizza> {
-    const pizza = await this.PizzaModel.create({ ...dto });
+  async create(dto: CreatePizzaDto, picture): Promise<Pizza> {
+    const imagePath = this.fileService.createFile(FileType.IMAGE, picture);
+    const pizza = await this.PizzaModel.create({ ...dto, picture: imagePath });
+
     return pizza;
   }
 

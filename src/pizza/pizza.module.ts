@@ -1,3 +1,4 @@
+import { FileService } from './../file/file.service';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PizzaService } from './pizza.service';
@@ -9,6 +10,6 @@ import { Pizza, PizzaSchema } from './pizza.schema';
     MongooseModule.forFeature([{ name: Pizza.name, schema: PizzaSchema }]),
   ],
   controllers: [PizzaController],
-  providers: [PizzaService],
+  providers: [PizzaService, FileService],
 })
 export class PizzaModule {}
