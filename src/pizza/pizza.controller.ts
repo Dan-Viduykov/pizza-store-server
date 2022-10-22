@@ -1,5 +1,13 @@
 import { ObjectId } from 'mongoose';
-import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { UploadedFiles, UseInterceptors } from '@nestjs/common/decorators';
 import { FileFieldsInterceptor } from '@nestjs/platform-express/multer';
 import { PizzaService } from './pizza.service';
@@ -17,8 +25,8 @@ export class PizzaController {
   }
 
   @Get()
-  getAll() {
-    return this.pizzaService.getAll();
+  getAll(@Query('count') count: number, @Query('offset') offset: number) {
+    return this.pizzaService.getAll(count, offset);
   }
 
   @Get(':id')

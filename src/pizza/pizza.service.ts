@@ -19,8 +19,8 @@ export class PizzaService {
     return pizza;
   }
 
-  async getAll(): Promise<Pizza[]> {
-    const pizzas = await this.PizzaModel.find();
+  async getAll(count = 8, offset = 0): Promise<Pizza[]> {
+    const pizzas = await this.PizzaModel.find().skip(offset).limit(count);
     return pizzas;
   }
 
