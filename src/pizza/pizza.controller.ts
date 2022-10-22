@@ -29,6 +29,11 @@ export class PizzaController {
     return this.pizzaService.getAll(count, offset);
   }
 
+  @Get('/search')
+  search(@Query('query') query: string) {
+    return this.pizzaService.search(query);
+  }
+
   @Get(':id')
   getOne(@Param('id') id: ObjectId) {
     return this.pizzaService.getOne(id);
