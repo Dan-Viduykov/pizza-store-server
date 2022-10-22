@@ -1,5 +1,6 @@
+import { ObjectId } from 'mongoose';
+import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
 import { PizzaService } from './pizza.service';
-import { Controller, Post, Body } from '@nestjs/common';
 import { CreatePizzaDto } from './dto/create-pizza.dto';
 
 @Controller('/pizzas')
@@ -11,10 +12,18 @@ export class PizzaController {
     return this.pizzaService.create(dto);
   }
 
-  // @Get()
-  // getAll() {
-  //   return 'work';
-  // }
-  //   getOne() {}
-  //   delete() {}
+  @Get()
+  getAll() {
+    return this.pizzaService.getAll();
+  }
+
+  @Get(':id')
+  getOne(@Param('id') id: ObjectId) {
+    return this.pizzaService.getOne(id);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: ObjectId) {
+    return this.pizzaService.delete(id);
+  }
 }

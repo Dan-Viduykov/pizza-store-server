@@ -1,8 +1,8 @@
-import { Pizza, PizzaSchema } from './pizza.schema';
-import { MongooseModule } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { PizzaService } from './pizza.service';
 import { PizzaController } from './pizza.controller';
+import { Pizza, PizzaSchema } from './pizza.schema';
 
 @Module({
   imports: [

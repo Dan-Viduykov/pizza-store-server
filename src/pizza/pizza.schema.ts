@@ -16,6 +16,9 @@ export class Pizza {
 
   @Prop()
   description: string;
+
+  @Prop()
+  picture: string;
 }
 
 export const PizzaSchema = SchemaFactory.createForClass(Pizza);

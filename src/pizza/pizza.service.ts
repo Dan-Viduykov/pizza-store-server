@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { Pizza, PizzaDocument } from './pizza.schema';
 import { CreatePizzaDto } from './dto/create-pizza.dto';
 
@@ -14,7 +14,19 @@ export class PizzaService {
     const pizza = await this.PizzaModel.create({ ...dto });
     return pizza;
   }
-  //   async getAll() {}
-  //   async getOne() {}
-  //   async delete() {}
+
+  async getAll(): Promise<Pizza[]> {
+    const pizzas = await this.PizzaModel.find();
+    return pizzas;
+  }
+
+  async getOne(id: ObjectId): Promise<Pizza> {
+    const pizza = await this.PizzaModel.findById(id);
+    return pizza;
+  }
+
+  async delete(id: ObjectId): Promise<ObjectId> {
+    const pizza = await this.PizzaModel.findByIdAndDelete(id);
+    return pizza._id;
+  }
 }
