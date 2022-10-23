@@ -6,7 +6,7 @@ export type PizzaDocument = Pizza & Document;
 @Schema()
 export class Pizza {
   @Prop()
-  name: string;
+  title: string;
 
   @Prop()
   category: string;
@@ -18,7 +18,10 @@ export class Pizza {
   description: string;
 
   @Prop()
-  picture: string;
+  imageUrl: string;
+
+  @Prop()
+  rating: number;
 }
 
 export const PizzaSchema = SchemaFactory.createForClass(Pizza);

@@ -1,4 +1,3 @@
-import { FileModule } from './file/file.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PizzaModule } from './pizza/pizza.module';
@@ -14,7 +13,6 @@ import * as path from 'path';
       'mongodb+srv://danil:danil@cluster0.djdqiit.mongodb.net/pizza-store?retryWrites=true&w=majority',
     ),
     PizzaModule,
-    FileModule,
   ],
 })
 export class AppModule {}

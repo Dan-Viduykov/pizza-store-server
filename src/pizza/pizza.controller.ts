@@ -8,8 +8,6 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
-import { UploadedFiles, UseInterceptors } from '@nestjs/common/decorators';
-import { FileFieldsInterceptor } from '@nestjs/platform-express/multer';
 import { PizzaService } from './pizza.service';
 import { CreatePizzaDto } from './dto/create-pizza.dto';
 
@@ -18,10 +16,8 @@ export class PizzaController {
   constructor(private pizzaService: PizzaService) {}
 
   @Post()
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'picture', maxCount: 1 }]))
-  create(@UploadedFiles() files, @Body() dto: CreatePizzaDto) {
-    const { picture } = files;
-    return this.pizzaService.create(dto, picture[0]);
+  create(@Body() dto: CreatePizzaDto) {
+    return this.pizzaService.create(dto);
   }
 
   @Get()

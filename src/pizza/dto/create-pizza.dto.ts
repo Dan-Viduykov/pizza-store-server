@@ -1,6 +1,8 @@
 export class CreatePizzaDto {
-  readonly name;
+  readonly title;
   readonly category;
   readonly price;
   readonly description;
+  readonly imageUrl;
+  readonly rating;
 }
