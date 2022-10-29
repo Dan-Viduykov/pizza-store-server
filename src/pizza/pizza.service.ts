@@ -12,11 +12,6 @@ interface GetAllProps {
   trend?: 'asc' | 'desc';
 }
 
-interface IMyResponce {
-  data: Pizza[];
-  count: number;
-}
-
 @Injectable({})
 export class PizzaService {
   constructor(
@@ -28,7 +23,7 @@ export class PizzaService {
     return pizza;
   }
 
-  async getAll(props: GetAllProps): Promise<IMyResponce> {
+  async getAll(props: GetAllProps): Promise<{ data: Pizza[]; count: number }> {
     const {
       count = 4,
       offset = 0,
