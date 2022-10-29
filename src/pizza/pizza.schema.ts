@@ -9,7 +9,7 @@ export class Pizza {
   title: string;
 
   @Prop()
-  category: string;
+  category: 'meat' | 'vegan' | 'gril' | 'spicy';
 
   @Prop()
   price: number;

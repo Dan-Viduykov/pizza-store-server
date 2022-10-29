@@ -21,8 +21,15 @@ export class PizzaController {
   }
 
   @Get()
-  getAll(@Query('count') count: number, @Query('offset') offset: number) {
-    return this.pizzaService.getAll(count, offset);
+  getAll(
+    @Query('count') count: number,
+    @Query('offset') offset: number,
+    @Query('filterBy')
+    filterBy: 'meat' | 'vegan' | 'gril' | 'spicy' | undefined,
+    @Query('sortBy') sortBy: 'rating' | 'price' | 'title',
+    @Query('trend') trend: 'asc' | 'desc',
+  ) {
+    return this.pizzaService.getAll({ count, offset, filterBy, sortBy, trend });
   }
 
   @Get('/search')
