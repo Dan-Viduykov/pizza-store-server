@@ -57,15 +57,12 @@ export class PizzaService {
     };
   }
 
-  async search(query: string): Promise<{ data: Pizza[]; count: number }> {
+  async search(query: string): Promise<Pizza[]> {
     const pizzas = await this.PizzaModel.find({
-      name: { $regex: new RegExp(query, 'i') },
+      title: { $regex: new RegExp(query, 'i') },
     });
 
-    return {
-      data: pizzas,
-      count: pizzas.length,
-    };
+    return pizzas;
   }
 
   async getOne(id: ObjectId): Promise<Pizza> {
